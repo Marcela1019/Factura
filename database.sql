@@ -5,4 +5,4 @@ CREATE TABLE categorias(
     categoriaNombre VARCHAR (50) NOT NULL, 
     descripcion VARCHAR (50),
     imagen VARCHAR (50)
-)
+);

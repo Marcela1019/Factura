@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 if(isset($_POST['guardar'])){
     require_once("config.php");
 
-    $config = new Config ();
+    $config = new Config();
 
     $config->setCategoriaNombre($_POST['categoriaNombre']);
     $config->setDescripcion($_POST['descripcion']);

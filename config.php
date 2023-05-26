@@ -7,7 +7,7 @@ ini_set("display_errors", 1);
 ini_set("display_startup_errors", 1);
 
 error_reporting(E_ALL);
-
+ 
     require_once ("db.php");
 
     class Config{
@@ -68,7 +68,7 @@ error_reporting(E_ALL);
         }
         public function obtainAll(){
             try {
-                $stm = $this -> dbCnx->prepare("SELECT * FROM facturacion");
+                $stm = $this -> dbCnx->prepare("SELECT * FROM categorias");
                 $stm -> execute();
                 return $stm -> fetchAll(); //retorna todos los registros de la tabla
     

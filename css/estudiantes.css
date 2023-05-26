@@ -241,6 +241,14 @@ body{
   object-fit: cover;
 }
 
+.imagenesD{
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  object-fit: cover;
+  
+ 
+}
 
 
 

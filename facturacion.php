@@ -8,7 +8,8 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
 require_once ("config.php");
-$data = new Config ();
+
+$data = new Config();
 
 $all = $data->obtainAll();// Completar
 
@@ -82,18 +83,17 @@ $all = $data->obtainAll();// Completar
             <!-- ///////Llenado DInamico desde la Base de Datos -->
             <?php
                   foreach($all as $key => $val){
-
               ?>
                   <tr>
                       <td> <?php echo $val['id']?></td>
                       <td> <?php echo $val['categoriaNombre']?></td>
                       <td> <?php echo $val['descripcion']?></td>
-                      <td> <?php echo $val['imagen']?></td>
+                      <td> <img  class= "imagenesD" src="imagen/<?php echo $val['imagen']?>" alt=""> </td>
                   
-                      <td> <a class="btn btn-danger" href="borrarFacturas.php?id=<?=$val['id']?>&req=delete">Borrar</a>
+                      <td> <a class="btn btn-danger " href="borrarFacturas.php?id=<?=$val['id']?>&req=delete">Borrar</a>
                   </tr>
                 <?php
-                  }
+                  };
                 ?>
        
 
