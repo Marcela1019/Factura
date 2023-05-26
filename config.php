@@ -66,6 +66,17 @@ error_reporting(E_ALL);
             }
             
         }
+        public function obtainAll(){
+            try {
+                $stm = $this -> dbCnx->prepare("SELECT * FROM facturacion");
+                $stm -> execute();
+                return $stm -> fetchAll(); //retorna todos los registros de la tabla
+    
+    
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
     }
 
 ?>
