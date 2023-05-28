@@ -95,8 +95,8 @@ $all = $data->obtainAll();// Invocamos al metodo
                       <td> <?php echo $val['descripcion']?></td>
                       <td> <img  class= "imagenesD" src="../imagen/<?php echo $val['imagen']?>" alt=""> </td>
                   
-                      <td> <a class="btn btn-danger " href="borrarCategorias.php?id=<?=$val['id']?>&req=delete">Borrar</a>
-                      <a class="btn btn-warning" href="actualizarCategoria.php?id=<?=$val['id']?>">Editar</a></td>
+                      <td> <a class="btn btn-danger " href="categoria/borrarCategorias.php?id=<?=$val['id']?>&req=delete">Borrar</a>
+                      <a class="btn btn-warning" href="categoria/actualizarCategoria.php?id=<?=$val['id']?>">Editar</a></td>
                     </tr>
                 <?php
                   };
@@ -132,7 +132,7 @@ $all = $data->obtainAll();// Invocamos al metodo
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="nuevaCategoria.php" method="post">
+            <form class="col d-flex flex-wrap" action="categoria/nuevaCategoria.php" method="post">
               <div class="mb-1 col-12">
                 <label for="categoriaNombre" class="form-label">Nombre Categoria </label>
                 <input 
