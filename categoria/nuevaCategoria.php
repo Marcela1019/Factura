@@ -8,7 +8,7 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
 if(isset($_POST['guardar'])){
-    require_once("config.php");
+    require_once("../config.php");
 
     $config = new Config();
 
@@ -18,7 +18,7 @@ if(isset($_POST['guardar'])){
     
     $config->insertData();
 
-    echo "<script>alert ('Los datos fueron guardados satisfactoriamente'); document.location='facturacion.php' </script>";
+    echo "<script>alert ('Los datos fueron guardados satisfactoriamente'); document.location='categoria.php' </script>";
 }
 
 ?>
