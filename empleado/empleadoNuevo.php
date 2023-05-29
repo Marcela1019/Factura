@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 if(isset($_POST['guardar'])){
     require_once("../config.php");
 
-    $config = new Clientes();
+    $config = new Empleado();
 
     $config->setEmpleadoNombre($_POST['empleadoNombre']);
     $config->setCelular($_POST['celular']);
@@ -19,7 +19,7 @@ if(isset($_POST['guardar'])){
     
     $config->insertData();
 
-    echo "<script>alert ('Los datos fueron guardados satisfactoriamente'); document.location='clientes.php' </script>";
+    echo "<script>alert ('Los datos fueron guardados satisfactoriamente'); document.location='empleado.php' </script>";
 }
 
 ?>

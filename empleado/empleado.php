@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 require_once ("../config.php"); // Trae la clase 
 
-$data = new Config(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
+$data = new Empleado(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
 
 $all = $data->obtainAll();// Invocamos al metodo 
 
@@ -52,16 +52,16 @@ $all = $data->obtainAll();// Invocamos al metodo
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;">Home</h3>
         </a>
-        <a href="categoria.php" style="display: flex;gap:1px;">
+        <a href="../categoria/categoria.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;font-weight: 800;">Categorias</h3>
+          <h3 style="margin: 0px;font-weight: 600;">Categorias</h3>
         </a>
 
-        <a href="../cliente/clientes.php" style="display: flex;gap:1px;">
+        <a href="../clientes/clientes.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;font-weight: 800;">Clientes</h3>
+          <h3 style="margin: 0px;font-weight: 600;">Clientes</h3>
         </a>
-       
+
         <a href="../empleado/empleado.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 600;">Empleado</h3>
@@ -72,17 +72,19 @@ $all = $data->obtainAll();// Invocamos al metodo
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Categoria</h2>
+        <h2>Empleados</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
+      
       <div class="menuTabla contenedor2">
         <table class="table table-custom ">
           <thead>
             <tr>
-              <th scope="col">#Categoria</th>
-              <th scope="col">NOMBRES</th>
-              <th scope="col">DESCRIPCION</th>
-              <th scope="col">IMAGEN</th>
+              <th scope="col">#Empleados</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Celular</th>
+              <th scope="col">Direccion</th>
+              <th scope="col">Imagen</th>
               <th scope="col">ELIMINAR</th>
             </tr>
           </thead>
@@ -94,12 +96,13 @@ $all = $data->obtainAll();// Invocamos al metodo
               ?>
                   <tr>
                       <td> <?php echo $val['id']?></td>
-                      <td> <?php echo $val['categoriaNombre']?></td>
-                      <td> <?php echo $val['descripcion']?></td>
+                      <td> <?php echo $val['empleadoNombre']?></td>
+                      <td> <?php echo $val['celular']?></td>
+                      <td> <?php echo $val['direccion']?></td>
                       <td> <img  class= "imagenesD" src="../imagen/<?php echo $val['imagen']?>" alt=""> </td>
-                  
-                      <td> <a class="btn btn-danger " href="borrarCategorias.php?id=<?=$val['id']?>&req=delete">Borrar</a>
-                      <a class="btn btn-warning" href="actualizarCategoria.php?id=<?=$val['id']?>">Editar</a></td>
+                                       
+                      <td> <a class="btn btn-danger " href="empleadoBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
+                      <a class="btn btn-warning" href="empleadoActualizar.php?id=<?=$val['id']?>">Editar</a></td>
                     </tr>
                 <?php
                   };
@@ -116,7 +119,7 @@ $all = $data->obtainAll();// Invocamos al metodo
     </div>
 
     <div class="parte-derecho " id="detalles">
-      <h3>Detalle Categoria</h3>
+      <h3>Detalle Empleados</h3>
       <p>Cargando...</p>
        <!-- ///////Generando la grafica -->
 
@@ -126,32 +129,42 @@ $all = $data->obtainAll();// Invocamos al metodo
 
 
 
-    <!-- /////////Modal de registro de nuevo Categoria //////////-->
+    <!-- /////////Modal de registro de nuevo Empleado //////////-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Categoria</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Empleado</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="nuevaCategoria.php" method="post">
+            <form class="col d-flex flex-wrap" action="empleadoNuevo.php" method="post">
               <div class="mb-1 col-12">
-                <label for="categoriaNombre" class="form-label">Nombre Categoria </label>
+                <label for="empleadoNombre" class="form-label">Nombre Empleado </label>
                 <input 
                   type="text"
-                  id="categoriaNombre"
-                  name="categoriaNombre"
+                  id="empleadoNombre"
+                  name="empleadoNombre"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripcion</label>
+                <label for="celular" class="form-label">Celular</label>
+                <input 
+                  type="number"
+                  id="celular"
+                  name="celular"
+                  class="form-control"  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="direccion" class="form-label">Direccion</label>
                 <input 
                   type="text"
-                  id="descripcion"
-                  name="descripcion"
+                  id="direccion"
+                  name="direccion"
                   class="form-control"  
                 />
               </div>
@@ -162,8 +175,9 @@ $all = $data->obtainAll();// Invocamos al metodo
                   type="file"
                   id="imagen"
                   name="imagen"
-                  class="form-control"  
-                 
+                  class="form-control"   
+                
+                  
                 />
               </div>
 

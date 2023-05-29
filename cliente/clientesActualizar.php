@@ -9,7 +9,7 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
 // Primer paso--------------------------------------
-  require_once ('config.php');
+  require_once ('../config.php');
   $data = new Clientes();
 
   $id = $_GET['id'];
@@ -56,7 +56,7 @@ if(isset($_POST['editar'])){
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="css/stylos.css">
+  <link rel="stylesheet" type="text/css" href="../css/stylos.css">
 
 </head>
 
@@ -67,7 +67,7 @@ if(isset($_POST['editar'])){
 
       <div class="perfil">
         <h3 style="margin-bottom: 2rem;">Super Marker.</h3>
-        <img src="imagen/imagen.png" alt="" class="imagenPerfil">
+        <img src="../imagen/imagen.png" alt="" class="imagenPerfil">
         <h3 >Marcela Betancourt</h3>
       </div>
       <div class="menus">
@@ -75,7 +75,7 @@ if(isset($_POST['editar'])){
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;font-weight: 800;">Home</h3>
         </a>
-        <a href="/Estudiantes/Estudiantes.html" style="display: flex;gap:2px;">
+        <a href="clientes.php" style="display: flex;gap:2px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;">Clientes</h3>
         </a>

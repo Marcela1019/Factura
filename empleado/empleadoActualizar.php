@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
 // Primer paso--------------------------------------
   require_once ('../config.php');
-  $data = new Config();
+  $data = new Empleado();
 
   $id = $_GET['id'];
   $data -> setId($id);
@@ -27,13 +27,15 @@ error_reporting(E_ALL);
 // Segundo paso-----------------------------------
 
 if(isset($_POST['editar'])){
-  $data->setCategoriaNombre($_POST['categoriaNombre']);
-  $data->setDescripcion($_POST['descripcion']);
+
+  $data->setEmpleadoNombre($_POST['empleadoNombre']);
+  $data->setCelular($_POST['celular']);
+  $data->setDireccion($_POST['direccion']);
   $data->setImagen($_POST['imagen']);
   
   $data->update();
 
-  echo "<script> alert ('Datos Actualizados!!! ');document.location='categoria.php'</script>"; 
+  echo "<script> alert ('Datos Actualizados!!! ');document.location='empleado.php'</script>"; 
 }
 
 ?>
@@ -47,7 +49,7 @@ if(isset($_POST['editar'])){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actualizar Categoria</title>
+  <title>Actualizar Empleado</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
@@ -75,39 +77,51 @@ if(isset($_POST['editar'])){
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;font-weight: 800;">Home</h3>
         </a>
-        <a href="categoria.php" style="display: flex;gap:2px;">
+        <a href="empleado.php" style="display: flex;gap:2px;">
           <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;">Categorias</h3>
+          <h3 style="margin: 0px;">Empleados</h3>
         </a>
       </div>
     </div>
 
     <div class="parte-media">
-        <h2 class="m-2">Categoria a Editar</h2>
+        <h2 class="m-2">Empleado a Editar</h2>
       <div class="menuTabla contenedor2">
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
-                <label for="categoriaNombre" class="form-label">Nombre Categoria</label>
+                <label for="empleadoNombre" class="form-label">Nombre Empleado</label>
                 <input 
                   type="text"
-                  id="categoriaNombre"
-                  name="categoriaNombre"
+                  id="empleadoNombre"
+                  name="empleadoNombre"
                   class="form-control"  
-                  value="<?php echo $value['categoriaNombre']; ?>"
+                  value="<?php echo $value['empleadoNombre']; ?>"
                  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripción</label>
+                <label for="celular" class="form-label">Celular</label>
                 <input 
-                  type="text"
-                  id="descripcion"
-                  name="descripcion"
+                  type="number"
+                  id="celular"
+                  name="celular"
                   class="form-control"  
-                  value="<?php echo $value['descripcion']; ?>"
+                  value="<?php echo $value['celular']; ?>"
                   
                  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="direccion" class="form-label">Direccion</label>
+                <input 
+                  type="text"
+                  id="direccion"
+                  name="direccion"
+                  class="form-control"  
+                  value="<?php echo $value['direccion']; ?>"
+                  
                 />
               </div>
 
@@ -132,7 +146,7 @@ if(isset($_POST['editar'])){
     </div>
 
     <div class="parte-derecho " id="detalles">
-      <h3>Detalle Categoria</h3>
+      <h3>Detalle Empleado</h3>
       <p>Cargando...</p>
        <!-- ///////Generando la grafica -->
 

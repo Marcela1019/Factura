@@ -7,7 +7,7 @@ ini_set("display_startup_errors", 1);
 
 error_reporting(E_ALL);
 
-require_once ("config.php"); // Trae la clase 
+require_once ("../config.php"); // Trae la clase 
 
 $data = new CLientes(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
 
@@ -33,7 +33,7 @@ $all = $data->obtainAll();// Invocamos al metodo
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="css/stylos.css">
+  <link rel="stylesheet" type="text/css" href="../css/stylos.css">
 
 </head>
 
@@ -44,7 +44,7 @@ $all = $data->obtainAll();// Invocamos al metodo
 
       <div class="perfil">
         <h3 style="margin-bottom: 2rem;">Super Market</h3>
-        <img src="imagen/imagen.png" alt="" class="imagenPerfil">
+        <img src="../imagen/imagen.png" alt="" class="imagenPerfil">
         <h3>Marcela Betancourt</h3>
       </div>
       <div class="menus">
@@ -52,14 +52,19 @@ $all = $data->obtainAll();// Invocamos al metodo
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;">Home</h3>
         </a>
-        <a href="categoria.php" style="display: flex;gap:1px;">
+        <a href="../categoria/categoria.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 600;">Categorias</h3>
         </a>
 
-        <a href="clientes.php" style="display: flex;gap:1px;">
+        <a href="../clientes/clientes.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 600;">Clientes</h3>
+        </a>
+
+        <a href="../empleado/empleado.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 600;">Empleado</h3>
         </a>
 
       </div>
