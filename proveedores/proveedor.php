@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 require_once ("../config.php"); // Trae la clase 
 
-$data = new Empleado(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
+$data = new Proveedores(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
 
 $all = $data->obtainAll();// Invocamos al metodo 
 
@@ -57,7 +57,7 @@ $all = $data->obtainAll();// Invocamos al metodo
           <h3 style="margin: 0px;font-weight: 600;">Categorias</h3>
         </a>
 
-        <a href="../cliente/clientes.php" style="display: flex;gap:1px;">
+        <a href="../clientes/clientes.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 600;">Clientes</h3>
         </a>
@@ -82,7 +82,7 @@ $all = $data->obtainAll();// Invocamos al metodo
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Empleados</h2>
+        <h2>Proveedores</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       
@@ -90,11 +90,10 @@ $all = $data->obtainAll();// Invocamos al metodo
         <table class="table table-custom ">
           <thead>
             <tr>
-              <th scope="col">#Empleados</th>
+              <th scope="col">#Proveedor</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Celular</th>
-              <th scope="col">Direccion</th>
-              <th scope="col">Imagen</th>
+              <th scope="col">Telefono</th>
+              <th scope="col">Ciudad</th>
               <th scope="col">ELIMINAR</th>
             </tr>
           </thead>
@@ -106,13 +105,12 @@ $all = $data->obtainAll();// Invocamos al metodo
               ?>
                   <tr>
                       <td> <?php echo $val['id']?></td>
-                      <td> <?php echo $val['empleadoNombre']?></td>
-                      <td> <?php echo $val['celular']?></td>
-                      <td> <?php echo $val['direccion']?></td>
-                      <td> <img  class= "imagenesD" src="../imagen/<?php echo $val['imagen']?>" alt=""> </td>
+                      <td> <?php echo $val['nombreProveedor']?></td>
+                      <td> <?php echo $val['telefono']?></td>
+                      <td> <?php echo $val['ciudad']?></td>
                                        
-                      <td> <a class="btn btn-danger " href="empleadoBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
-                      <a class="btn btn-warning" href="empleadoActualizar.php?id=<?=$val['id']?>">Editar</a></td>
+                      <td> <a class="btn btn-danger " href="proveedorBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
+                      <a class="btn btn-warning" href="proveedorActualizar.php?id=<?=$val['id']?>">Editar</a></td>
                     </tr>
                 <?php
                   };
@@ -129,7 +127,7 @@ $all = $data->obtainAll();// Invocamos al metodo
     </div>
 
     <div class="parte-derecho " id="detalles">
-      <h3>Detalle Empleados</h3>
+      <h3>Detalle Proveedor</h3>
       <p>Cargando...</p>
        <!-- ///////Generando la grafica -->
 
@@ -139,55 +137,44 @@ $all = $data->obtainAll();// Invocamos al metodo
 
 
 
-    <!-- /////////Modal de registro de nuevo Empleado //////////-->
+    <!-- /////////Modal de registro de nuevo Proveedor //////////-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Empleado</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Proveedor</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="empleadoNuevo.php" method="post">
+            <form class="col d-flex flex-wrap" action="proveedornuevo.php" method="post">
               <div class="mb-1 col-12">
-                <label for="empleadoNombre" class="form-label">Nombre Empleado </label>
+                <label for="nombreProveedor" class="form-label">Nombre Proveedor </label>
                 <input 
                   type="text"
-                  id="empleadoNombre"
-                  name="empleadoNombre"
+                  id="nombreProveedor"
+                  name="nombreProveedor"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="celular" class="form-label">Celular</label>
+                <label for="telefono" class="form-label">Telefono</label>
                 <input 
                   type="number"
-                  id="celular"
-                  name="celular"
+                  id="telefono"
+                  name="telefono"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="ciudad" class="form-label">Ciudad</label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="ciudad"
+                  name="ciudad"
                   class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
-                <input 
-                  type="file"
-                  id="imagen"
-                  name="imagen"
-                  class="form-control"   
-                
-                  
+                 
                 />
               </div>
 

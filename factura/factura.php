@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 
 require_once ("../config.php"); // Trae la clase 
 
-$data = new Empleado(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
+$data = new Factura(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
 
 $all = $data->obtainAll();// Invocamos al metodo 
 
@@ -82,7 +82,7 @@ $all = $data->obtainAll();// Invocamos al metodo
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Empleados</h2>
+        <h2>Factura</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       
@@ -90,11 +90,10 @@ $all = $data->obtainAll();// Invocamos al metodo
         <table class="table table-custom ">
           <thead>
             <tr>
-              <th scope="col">#Empleados</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Celular</th>
-              <th scope="col">Direccion</th>
-              <th scope="col">Imagen</th>
+              <th scope="col">#Factura</th>
+              <th scope="col">Nombre Empleado</th>
+              <th scope="col">Nombre Cliente</th>
+              <th scope="col">Fecha</th>
               <th scope="col">ELIMINAR</th>
             </tr>
           </thead>
@@ -106,13 +105,12 @@ $all = $data->obtainAll();// Invocamos al metodo
               ?>
                   <tr>
                       <td> <?php echo $val['id']?></td>
-                      <td> <?php echo $val['empleadoNombre']?></td>
-                      <td> <?php echo $val['celular']?></td>
-                      <td> <?php echo $val['direccion']?></td>
-                      <td> <img  class= "imagenesD" src="../imagen/<?php echo $val['imagen']?>" alt=""> </td>
-                                       
-                      <td> <a class="btn btn-danger " href="empleadoBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
-                      <a class="btn btn-warning" href="empleadoActualizar.php?id=<?=$val['id']?>">Editar</a></td>
+                      <td> <?php echo $val['id_empleado']?></td>
+                      <td> <?php echo $val['id_cliente']?></td>
+                      <td> <?php echo $val['fecha']?></td>
+                                          
+                      <td> <a class="btn btn-danger " href="facturaBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
+                      <a class="btn btn-warning" href="facturaActualizar.php?id=<?=$val['id']?>">Editar</a></td>
                     </tr>
                 <?php
                   };
@@ -129,65 +127,53 @@ $all = $data->obtainAll();// Invocamos al metodo
     </div>
 
     <div class="parte-derecho " id="detalles">
-      <h3>Detalle Empleados</h3>
+      <h3>Detalle Factura</h3>
       <p>Cargando...</p>
        <!-- ///////Generando la grafica -->
 
     </div>
-
-
-
-
 
     <!-- /////////Modal de registro de nuevo Empleado //////////-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Empleado</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Factura</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="empleadoNuevo.php" method="post">
+            <form class="col d-flex flex-wrap" action="facturaNueva.php" method="post">
               <div class="mb-1 col-12">
-                <label for="empleadoNombre" class="form-label">Nombre Empleado </label>
-                <input 
+                <label for="id_empleado" class="form-label">Nombre Empleado </label>
+                <select name="id_empleado" id="id_empleado">
+
+                </select>
+               <!--  <input 
                   type="text"
                   id="empleadoNombre"
                   name="empleadoNombre"
                   class="form-control"  
-                />
-              </div>
+                /> -->
+              </div> 
 
               <div class="mb-1 col-12">
-                <label for="celular" class="form-label">Celular</label>
-                <input 
+                <label for="id_cliente" class="form-label">Nombre Cliente</label>
+                <select name="id_cliente" id="id_cliente"></select>
+               <!--  <input 
                   type="number"
                   id="celular"
                   name="celular"
                   class="form-control"  
-                />
+                /> -->
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="fecha" class="form-label">Fecha</label>
                 <input 
-                  type="text"
-                  id="direccion"
-                  name="direccion"
+                  type="date"
+                  id="fecha"
+                  name="fecha"
                   class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
-                <input 
-                  type="file"
-                  id="imagen"
-                  name="imagen"
-                  class="form-control"   
-                
-                  
                 />
               </div>
 

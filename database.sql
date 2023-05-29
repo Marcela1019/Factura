@@ -31,3 +31,15 @@ CREATE TABLE factura(
     FOREIGN KEY (id_empleado) references empleado(id),
      FOREIGN KEY (id_cliente) references clientes(id)
 );
+
+CREATE TABLE proveedor(
+    id INT primary key AUTO_INCREMENT,
+    nombreProveedor VARCHAR (50) NOT NULL,
+    telefono INT (20) NOT NULL,
+    ciudad VARCHAR (50) NOT NULL
+);
+
+SELECT * FROM proveedor;
+
+
+

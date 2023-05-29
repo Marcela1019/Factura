@@ -12,10 +12,10 @@
     }
 
     if (!defined("DB_USER")){ //usuario
-        define ("DB_USER", "root");
+        define ("DB_USER", "campus");
     }
 
     if (!defined("DB_PWD")){
-        define ("DB_PWD", "");
+        define ("DB_PWD", "campus2023");
     }
 ?>

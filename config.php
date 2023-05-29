@@ -323,6 +323,210 @@ error_reporting(E_ALL);
         }
     }
 
+    class Factura{
+        private $id;
+        private $id_empleado;
+        private $id_cliente;
+        private $fecha;
+
+        protected $dbCnx;
+
+        public function __construct($id=0, $id_empleado="", $id_cliente="",$fecha=""){
+            $this->id=$id;
+            $this->id_empleado=$id_empleado;
+            $this->id_cliente=$id_cliente;
+            $this->fecha=$fecha;
+
+            $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        }
+
+
+        public function setId($id){
+            $this->id=$id;
+
+        }
+        public function getId(){
+            return $this->id;
+        }
+        
+        public function setId_empleado($id_empleado){
+            $this->id_empleado=$id_empleado;
+
+        }
+        public function getId_empleado(){
+            return $this->id_empleado;
+        }
+        public function setId_cliente($id_cliente){
+            $this->id_cliente=$id_cliente;
+
+        }
+        public function getId_cliente(){
+            return $this->id_cliente;
+        }
+        public function setFecha($fecha){
+            $this->fecha=$fecha;
+
+        }
+        public function getFecha(){
+            return $this->fecha;
+        }
+
+
+        public function insertData(){
+            try {
+                $stm = $this -> dbCnx -> prepare("INSERT INTO factura(id_empleado, id_cliente, fecha) values(?,?,?)");
+                $stm -> execute ([$this->id_empleado, $this->id_cliente, $this->fecha]);
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+            
+        }
+        public function obtainAll(){
+            try {
+                $stm = $this -> dbCnx->prepare("SELECT * FROM factura"); // Metodos nativos del PDO
+                $stm -> execute();
+                return $stm -> fetchAll(); //retorna todos los registros de la tabla
+    
+    
+            } catch (Exception $e) { // captura el error
+                return $e->getMessage();
+            }
+        }
+        public function delete(){
+            try {
+                $stm = $this->dbCnx->prepare("DELETE FROM factura WHERE id = ?");
+                $stm->execute([$this->id]);
+                return $stm->fetchAll();
+                echo "<script> alert('Registro Eliminado');document.location='factura.php'</script>"; 
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+        public function selectOne(){
+            try {
+                $stm = $this->dbCnx->prepare("SELECT * FROM factura WHERE id=?");
+                $stm->execute([$this->id]);
+                return $stm->fetchAll();
+                
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    
+        public function update(){
+            try {
+                $stm = $this->dbCnx->prepare("UPDATE factura SET id_empleado = ?, id_cliente = ?, fecha = ? WHERE id=?");
+                $stm->execute([$this->id_empleado, $this->id_cliente, $this->fecha, $this->id]);
+    
+    
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    }
+
+    class Proveedores{
+        private $id;
+        private $nombreProveedor;
+        private $telefono;
+        private $ciudad;
+
+        protected $dbCnx;
+
+        public function __construct($id=0, $nombreProveedor="", $telefono="",$ciudad=""){
+            $this->id=$id;
+            $this->nombreProveedor=$nombreProveedor;
+            $this->telefono=$telefono;
+            $this->ciudad=$ciudad;
+
+            $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        }
+
+
+        public function setId($id){
+            $this->id=$id;
+
+        }
+        public function getId(){
+            return $this->id;
+        }
+        
+        public function setNombreProveedor($nombreProveedor){
+            $this->nombreProveedor=$nombreProveedor;
+
+        }
+        public function getNombreProveedor(){
+            return $this->nombreProveedor;
+        }
+        public function setTelefono($telefono){
+            $this->telefono=$telefono;
+
+        }
+        public function getTelefono(){
+            return $this->telefono;
+        }
+        public function setCiudad($ciudad){
+            $this->ciudad=$ciudad;
+
+        }
+        public function getCiudad(){
+            return $this->ciudad;
+        }
+
+
+        public function insertData(){
+            try {
+                $stm = $this -> dbCnx -> prepare("INSERT INTO proveedor(nombreProveedor, telefono, ciudad) values(?,?,?)");
+                $stm -> execute ([$this->nombreProveedor, $this->telefono, $this->ciudad]);
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+            
+        }
+        public function obtainAll(){
+            try {
+                $stm = $this -> dbCnx->prepare("SELECT * FROM proveedor"); // Metodos nativos del PDO
+                $stm -> execute();
+                return $stm -> fetchAll(); //retorna todos los registros de la tabla
+    
+    
+            } catch (Exception $e) { // captura el error
+                return $e->getMessage();
+            }
+        }
+        public function delete(){
+            try {
+                $stm = $this->dbCnx->prepare("DELETE FROM proveedor WHERE id = ?");
+                $stm->execute([$this->id]);
+                return $stm->fetchAll();
+                echo "<script> alert('Registro Eliminado');document.location='proveedor.php'</script>"; 
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+        public function selectOne(){
+            try {
+                $stm = $this->dbCnx->prepare("SELECT * FROM proveedor WHERE id=?");
+                $stm->execute([$this->id]);
+                return $stm->fetchAll();
+                
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    
+        public function update(){
+            try {
+                $stm = $this->dbCnx->prepare("UPDATE proveedor SET nombreProveedor = ?, telefono = ?, ciudad = ? WHERE id=?");
+                $stm->execute([$this->nombreProveedor, $this->telefono, $this->ciudad, $this->id]);
+    
+    
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    }
+
 ?>
 
 
