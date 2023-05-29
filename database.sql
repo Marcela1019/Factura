@@ -1,3 +1,4 @@
+USE supermarket; 
 CREATE DATABASE supermarket
 
 CREATE TABLE categorias(
@@ -41,5 +42,15 @@ CREATE TABLE proveedor(
 
 SELECT * FROM proveedor;
 
+INSERT INTO clientes(id, clienteNombre, celular,compañia)
+VALUES (1, "Juan", 3154317110, "Alkosto");
 
+INSERT INTO empleado(id, empleadoNombre, celular ,direccion, imagen)
+VALUES (1, "Juan", 315431, "Calle 20", "Imagen");
 
+INSERT INTO factura(id, id_empleado, celular ,direccion, imagen)
+VALUES (1, "Juan", 315431, "Calle 20", "Imagen");
+
+SELECT factura.id, empleado.empleadoNombre, clientes.clienteNombre, factura.fecha FROM factura INNER JOIN empleado ON empleado.id=factura.id_empleado INNER JOIN clientes ON clientes.id=factura.id_empleado;
+
+SELECT * FROM factura;

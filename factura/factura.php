@@ -11,8 +11,9 @@ require_once ("../config.php"); // Trae la clase
 
 $data = new Factura(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
 
-$all = $data->obtainAll();// Invocamos al metodo 
-
+$all = $data->obtainAll();
+$empleado = $data->obtaintEmpleado();
+$cliente = $data->obtaintCliente();
 
 ?>
 
@@ -145,8 +146,15 @@ $all = $data->obtainAll();// Invocamos al metodo
             <form class="col d-flex flex-wrap" action="facturaNueva.php" method="post">
               <div class="mb-1 col-12">
                 <label for="id_empleado" class="form-label">Nombre Empleado </label>
-                <select name="id_empleado" id="id_empleado">
-
+                <select class="form-control" name="id_empleado" id="id_empleado">
+                  <option value="">Seleccione Empleado</option>
+                  <?php
+                    foreach($empleado as $key => $valEmp){
+                  ?>
+                  <option value="<?php echo $valEmp['id']?>"><?php echo $valEmp['empleadoNombre']?></option>
+                  <?php
+                    }
+                  ?>
                 </select>
                <!--  <input 
                   type="text"
@@ -158,7 +166,16 @@ $all = $data->obtainAll();// Invocamos al metodo
 
               <div class="mb-1 col-12">
                 <label for="id_cliente" class="form-label">Nombre Cliente</label>
-                <select name="id_cliente" id="id_cliente"></select>
+                <select class="form-control" name="id_cliente" id="id_cliente">
+                  <option value="">Seleccione Empleado</option>
+                  <?php
+                    foreach($cliente as $key => $valCln){
+                  ?>
+                  <option value="<?php echo $valCln['id']?>"><?php echo $valCln['clienteNombre']?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
                <!--  <input 
                   type="number"
                   id="celular"
