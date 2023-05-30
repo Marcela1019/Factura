@@ -73,3 +73,14 @@ CREATE TABLE productos(
     FOREIGN KEY (id_categoria) references categorias(id),
     FOREIGN KEY (id_proveedor) references proveedor(id)
 );
+
+CREATE TABLE login(
+
+    id INT PRIMARY KEY AUTO_INCREMENT, 
+    id_usuario INT, 
+    email VARCHAR (80) ,
+    username VARCHAR (80) NOT NULL,
+    password VARCHAR (60) NOT NULL,
+    Foreign Key (id_usuario) REFERENCES empleado(id)
+
+)
