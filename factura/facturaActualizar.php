@@ -29,7 +29,6 @@ error_reporting(E_ALL);
 if(isset($_POST['editar'])){
 
   $data->setId_empleado($_POST['id_empleado']);
-  $data->setCelular($_POST['celular']);
   $data->setId_cliente($_POST['id_cliente']);
   $data->setFecha($_POST['fecha']);
   

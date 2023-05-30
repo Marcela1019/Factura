@@ -9,11 +9,11 @@ error_reporting(E_ALL);
 
 require_once ("../config.php"); // Trae la clase 
 
-$data = new Factura(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
+$data = new Productos(); // instanciar variable de tipo config - cuando dices New invoca el constructor 
 
 $all = $data->obtainAll();
-$empleado = $data->obtaintEmpleado();
-$cliente = $data->obtaintCliente();
+/* $empleado = $data->obtaintEmpleado();
+$cliente = $data->obtaintCliente(); */
 
 ?>
 
@@ -78,7 +78,7 @@ $cliente = $data->obtaintCliente();
           <h3 style="margin: 0px;font-weight: 600;">Proveedor</h3>
         </a>
 
-        <a href="../productos/productos.php" style="display: flex;gap:1px;">
+        <a href="../productos/roductos.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 600;">Productos</h3>
         </a>
@@ -88,7 +88,7 @@ $cliente = $data->obtaintCliente();
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Factura</h2>
+        <h2>Productos</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       
@@ -96,10 +96,14 @@ $cliente = $data->obtaintCliente();
         <table class="table table-custom ">
           <thead>
             <tr>
-              <th scope="col">#Factura</th>
-              <th scope="col">Nombre Empleado</th>
-              <th scope="col">Nombre Cliente</th>
-              <th scope="col">Fecha</th>
+              <th scope="col">#Producto</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Unidades</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Proveedor</th>
+              <th scope="col">Descontinuado</th>
               <th scope="col">ELIMINAR</th>
             </tr>
           </thead>
@@ -111,12 +115,16 @@ $cliente = $data->obtaintCliente();
               ?>
                   <tr>
                       <td> <?php echo $val['id']?></td>
-                      <td> <?php echo $val['empleadoNombre']?></td>
-                      <td> <?php echo $val['clienteNombre']?></td>
-                      <td> <?php echo $val['fecha']?></td>
+                      <td> <?php echo $val['nombreproducto']?></td>
+                      <td> <?php echo $val['precioUnitario']?></td>
+                      <td> <?php echo $val['unidadesPedidas']?></td>
+                      <td> <?php echo $val['stock']?></td>
+                      <td> <?php echo $val['id_categoria']?></td>
+                      <td> <?php echo $val['id_proveedor']?></td>
+                      <td> <?php echo $val['descontinuado']?></td>
                                           
-                      <td> <a class="btn btn-danger " href="facturaBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
-                      <a class="btn btn-warning" href="facturaActualizar.php?id=<?=$val['id']?>">Editar</a></td>
+                      <td> <a class="btn btn-danger " href="productoBorrar.php?id=<?=$val['id']?>&req=delete">Borrar</a>
+                      <a class="btn btn-warning" href="productoActualizar.php?id=<?=$val['id']?>">Editar</a></td>
                     </tr>
                 <?php
                   };
@@ -133,7 +141,7 @@ $cliente = $data->obtaintCliente();
     </div>
 
     <div class="parte-derecho " id="detalles">
-      <h3>Detalle Factura</h3>
+      <h3>Detalle Producto</h3>
       <p>Cargando...</p>
        <!-- ///////Generando la grafica -->
 
@@ -144,16 +152,56 @@ $cliente = $data->obtaintCliente();
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Factura</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="facturaNueva.php" method="post">
+            <form class="col d-flex flex-wrap" action="productoNuevo.php" method="post">
+            <div class="mb-1 col-12">
+                <label for="nombreproducto" class="form-label">Nombre Producto</label>
+                <input 
+                  type="text"
+                  id="nombreproducto"
+                  name="nombreproducto"
+                  class="form-control"  
+                />
+              </div>
+
+              <div class="mb-1 col-4">
+                <label for="precioUnitario" class="form-label">Precio Producto</label>
+                <input 
+                  type="number"
+                  id="precioUnitario"
+                  name="precioUnitario"
+                  class="form-control"  
+                />
+              </div>
+
+              <div class="mb-1 col-4">
+                <label for="unidadesPedidas" class="form-label">Unidades Pedidas</label>
+                <input 
+                  type="number"
+                  id="unidadesPedidas"
+                  name="unidadesPedidas"
+                  class="form-control"  
+                />
+              </div>
+
+              <div class="mb-1 col-4">
+                <label for="stock" class="form-label">Stock</label>
+                <input 
+                  type="number"
+                  id="stock"
+                  name="stock"
+                  class="form-control"  
+                />
+              </div>
+
 
             <div class="mb-1 col-12">
-                <label for="id_cliente" class="form-label">Nombre Cliente</label>
-                <select class="form-control" name="id_cliente" id="id_cliente">
-                  <option value="">Seleccione Cliente</option>
+                <label for="id_categoria" class="form-label">Nombre Categoria</label>
+                <select class="form-control" name="id_categoria" id="id_categoria">
+                  <option value="">Seleccione Categoria</option>
                   <?php
                     foreach($cliente as $key => $valCln){
                   ?>

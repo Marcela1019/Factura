@@ -124,7 +124,7 @@ error_reporting(E_ALL);
             $this->celular=$celular;
             $this->compañia=$compañia;
             parent::__construct($dbCnx);
-    }
+        }
 
 
         public function setId($id){
@@ -374,7 +374,7 @@ error_reporting(E_ALL);
         }
         public function obtainAll(){
             try {
-                $stm = $this -> dbCnx->prepare("SELECT * FROM factura"); // Metodos nativos del PDO
+                $stm = $this -> dbCnx->prepare("SELECT factura.id, clientes.clienteNombre, empleado.empleadoNombre, factura.fecha FROM factura INNER JOIN clientes ON factura.id_cliente = clientes.id INNER JOIN empleado ON factura.id_empleado = empleado.id"); // Metodos nativos del PDO
                 $stm -> execute();
                 return $stm -> fetchAll(); //retorna todos los registros de la tabla
     
@@ -532,6 +532,170 @@ error_reporting(E_ALL);
             try {
                 $stm = $this->dbCnx->prepare("UPDATE proveedor SET nombreProveedor = ?, telefono = ?, ciudad = ? WHERE id=?");
                 $stm->execute([$this->nombreProveedor, $this->telefono, $this->ciudad, $this->id]);
+    
+    
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    }
+
+    class Productos extends Conexion{
+        private $id;
+        private $nombreproducto;
+        private $precioUnitario;
+        private $unidadesPedidas;
+        private $stock;
+        private $id_categoria;
+        private $id_proveedor; 
+        private $descontinuado;
+
+        public function __construct($id=0, $nombreproducto="", $precioUnitario="",$unidadesPedidas="", $stock="", $id_categoria="", $id_proveedor="", $descontinuado="", $dbCnx=""){
+            $this->id=$id;
+            $this->nombreproducto=$nombreproducto;
+            $this->precioUnitario=$precioUnitario;
+            $this->unidadesPedidas=$unidadesPedidas;
+            $this->stock=$stock;
+            $this->id_categoria=$categoriaNombre;
+            $this->id_proveedor=$id_proveedor;
+            $this->descontinuado=$descontinuado;
+            parent::__construct($dbCnx);
+       }
+
+
+        public function setId($id){
+            $this->id=$id;
+
+        }
+        public function getId(){
+            return $this->id;
+        }
+        
+        public function setNombreproducto($nombreproducto){
+            $this->nombreproducto=$nombreproducto;
+
+        }
+        public function getNombreproducto(){
+            return $this->nombreproducto;
+        }
+        public function setPrecioUnitario($precioUnitario){
+            $this->precioUnitario=$precioUnitario;
+
+        }
+        public function getPrecioUnitario(){
+            return $this->precioUnitario;
+        }
+        public function setUnidadesPedidas($unidadesPedidas){
+            $this->unidadesPedidas=$unidadesPedidas;
+
+        }
+        public function getUnidadesPedidas(){
+            return $this->unidadesPedidas;
+        }
+
+        public function setStock($stock){
+            $this->stock=$stock;
+
+        }
+        public function getStock(){
+            return $this->stock;
+        }
+
+        public function setId_categoria($id_categoria){
+            $this->id_categoria=$id_categoria;
+
+        }
+        public function getId_categoria(){
+            return $this->id_categoria;
+        }
+
+        public function setId_proveedor($id_proveedor){
+            $this->id_proveedor=$id_proveedor;
+
+        }
+        public function getId_proveedor(){
+            return $this->id_proveedor;
+        }
+
+        public function setDescontinuado($descontinuado){
+            $this->descontinuado=$descontinuado;
+
+        }
+        public function getDescontinuado(){
+            return $this->descontinuado;
+        }
+
+
+        public function insertData(){
+            try {
+                $stm = $this -> dbCnx -> prepare("INSERT INTO productos(nombreproducto, precioUnitario, unidadesPedidas, stock, id_categoria, id_proveedor, descontinuado) values(?,?,?,?,?,?,?)");
+                $stm -> execute ([$this->nombreproducto, $this->precioUnitario, $this->unidadesPedidas, $this->stock, $this->id_categoria, $this-> id_proveedor, $this->descontinuado]);
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+            
+        }
+        public function obtainAll(){
+            try {
+                $stm = $this -> dbCnx->prepare("SELECT productos.id, productos.nombreproducto, productos.precioUnitario, productos.unidadesPedidas, productos.stock, categorias.id_categoria, proveedor.id_proveedor, productos.descontinuado FROM productos INNER JOIN categorias ON productos.id_categoria = categorias.id INNER JOIN proveedor ON productos.id_proveedor = proveedor.id"); // Metodos nativos del PDO
+                $stm -> execute();
+                return $stm -> fetchAll(); //retorna todos los registros de la tabla
+    
+    
+            } catch (Exception $e) { // captura el error
+                return $e->getMessage();
+            }
+        }
+
+        public function obtainCategoria(){
+            try {
+                $stm = $this -> dbCnx->prepare("SELECT id, categoriaNombre FROM categorias"); // Metodos nativos del PDO
+                $stm -> execute();
+                return $stm -> fetchAll(); //retorna todos los registros de la tabla
+    
+    
+            } catch (Exception $e) { // captura el error
+                return $e->getMessage();
+            }
+        }
+
+        public function obtaintProveedor(){
+            try {
+                $stm = $this -> dbCnx->prepare("SELECT id, nombreProveedor FROM proveedor"); // Metodos nativos del PDO
+                $stm -> execute();
+                return $stm -> fetchAll(); //retorna todos los registros de la tabla
+    
+    
+            } catch (Exception $e) { // captura el error
+                return $e->getMessage();
+            }
+        }
+        
+        public function delete(){
+            try {
+                $stm = $this->dbCnx->prepare("DELETE FROM productos WHERE id = ?");
+                $stm->execute([$this->id]);
+                return $stm->fetchAll();
+                echo "<script> alert('Registro Eliminado');document.location='productos.php'</script>"; 
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+        public function selectOne(){
+            try {
+                $stm = $this->dbCnx->prepare("SELECT * FROM productos WHERE id=?");
+                $stm->execute([$this->id]);
+                return $stm->fetchAll();
+                
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    
+        public function update(){
+            try {
+                $stm = $this->dbCnx->prepare("UPDATE productos SET nombreproducto = ?, precioUnitario = ?, unidadesPedidas = ?, stock= ?, id_categoria= ?, id_proveedor= ?, descontinuado= ? WHERE id=?");
+                $stm->execute([$this->nombreproducto, $this->precioUnitario, $this->unidadesPedidas, $this->id, $this->stock, $this->id_categoria, $this->id_proveedor, $this->descontinuado]);
     
     
             } catch (Exception $e) {

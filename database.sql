@@ -1,4 +1,8 @@
 USE supermarket; 
+
+show databases;
+
+show tables;
 CREATE DATABASE supermarket
 
 CREATE TABLE categorias(
@@ -54,3 +58,18 @@ VALUES (1, "Juan", 315431, "Calle 20", "Imagen");
 SELECT factura.id, empleado.empleadoNombre, clientes.clienteNombre, factura.fecha FROM factura INNER JOIN empleado ON empleado.id=factura.id_empleado INNER JOIN clientes ON clientes.id=factura.id_empleado;
 
 SELECT * FROM factura;
+
+CREATE TABLE productos(
+
+        id INT primary key AUTO_INCREMENT,
+        nombreproducto VARCHAR(50),
+        precioUnitario FLOAT,
+        unidadesPedidas INT,
+        stock INT,
+        id_categoria INT,
+        id_proveedor INT, 
+        descontinuado VARCHAR (10),
+
+    FOREIGN KEY (id_categoria) references categorias(id),
+    FOREIGN KEY (id_proveedor) references proveedor(id)
+);

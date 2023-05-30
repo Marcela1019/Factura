@@ -12,10 +12,9 @@ if(isset($_POST['guardar'])){
 
     $config = new Clientes();
 
-    $config->setEmpleadoNombre($_POST['empleadoNombre']);
+    $config->setClienteNombre($_POST['clienteNombre']);
     $config->setCelular($_POST['celular']);
-    $config->setDireccion($_POST['direccion']);
-    $config->setImagen($_POST['imagen']);
+    $config->setCompañia($_POST['compañia']);
     
     $config->insertData();
 

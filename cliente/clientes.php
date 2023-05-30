@@ -77,6 +77,11 @@ $all = $data->obtainAll();// Invocamos al metodo
           <h3 style="margin: 0px;font-weight: 600;">Proveedor</h3>
         </a>
 
+        <a href="../productos/productos.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 600;">Productos</h3>
+        </a>
+
       </div>
     </div>
 
@@ -146,7 +151,7 @@ $all = $data->obtainAll();// Invocamos al metodo
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="clientesnuevo.php" method="post">
+            <form class="col d-flex flex-wrap" action="clientesNuevo.php" method="post">
               <div class="mb-1 col-12">
                 <label for="clienteNombre" class="form-label">Nombre Clientes </label>
                 <input 

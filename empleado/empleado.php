@@ -77,6 +77,11 @@ $all = $data->obtainAll();// Invocamos al metodo
           <h3 style="margin: 0px;font-weight: 600;">Proveedor</h3>
         </a>
 
+        <a href="../productos/productos.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 600;">Productos</h3>
+        </a>
+
       </div>
     </div>
 
