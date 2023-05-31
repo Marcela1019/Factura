@@ -74,7 +74,7 @@ CREATE TABLE productos(
     FOREIGN KEY (id_proveedor) references proveedor(id)
 );
 
-CREATE TABLE login(
+CREATE TABLE registro(
 
     id INT PRIMARY KEY AUTO_INCREMENT, 
     id_usuario INT, 
@@ -83,4 +83,8 @@ CREATE TABLE login(
     password VARCHAR (60) NOT NULL,
     Foreign Key (id_usuario) REFERENCES empleado(id)
 
-)
+);
+
+DESCRIBE registro;
+
+show empleado;

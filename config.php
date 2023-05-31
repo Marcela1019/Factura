@@ -209,6 +209,7 @@ error_reporting(E_ALL);
             }
         }
     }
+    
     class Empleado extends Conexion{
         private $id;
         private $empleadoNombre;

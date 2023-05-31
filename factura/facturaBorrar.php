@@ -7,7 +7,7 @@
         if ($_GET['req']== "delete"){
             $record -> setId($_GET['id']);
             $record -> delete();
-            echo "<script>alert ('Dato borrado satisfactoriamenente '); document.location='factura.php'</script>";
+            echo "<script>alert ('Dato borrado satisfactoriamente '); document.location='factura.php'</script>";
         }
     }
 ?>

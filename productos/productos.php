@@ -213,13 +213,13 @@ $cliente = $data->obtaintCliente(); */
        
               </div>
               <div class="mb-1 col-12">
-                <label for="id_empleado" class="form-label">Nombre Empleado </label>
-                <select class="form-control" name="id_empleado" id="id_empleado">
-                  <option value="">Seleccione Empleado</option>
+                <label for="id_proveedor" class="form-label">Nombre Proveedor </label>
+                <select class="form-control" name="id_proveedor" id="id_proveedor">
+                  <option value="">Seleccione Proveedor</option>
                   <?php
-                    foreach($empleado as $key => $valEmp){
+                    foreach($proveedor as $key => $valEmp){
                   ?>
-                  <option value="<?php echo $valEmp['id']?>"><?php echo $valEmp['empleadoNombre']?></option>
+                  <option value="<?php echo $valEmp['id']?>"><?php echo $valEmp['proveedorNombre']?></option>
                   <?php
                     }
                   ?>
@@ -229,11 +229,11 @@ $cliente = $data->obtaintCliente(); */
 
 
               <div class="mb-1 col-12">
-                <label for="fecha" class="form-label">Fecha</label>
+                <label for="descontinuado" class="form-label">Descontinuado</label>
                 <input 
                   type="date"
-                  id="fecha"
-                  name="fecha"
+                  id="descontinuado"
+                  name="descontinuado"
                   class="form-control"  
                 />
               </div>
