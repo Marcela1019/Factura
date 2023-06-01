@@ -8,7 +8,7 @@ require_once("../conexion/conexion.php");
 require_once("../conexion/db.php");
 
 
-class Registro extends Conexion{
+class RegistroUser extends Conexion{
 
     private $id;
     private $id_usuario;
@@ -16,7 +16,7 @@ class Registro extends Conexion{
     private $username;
     private $password;
 
-    public function __construct($id=0, $id_usuario="",$email="",$username="",$password="",$dbCnx=""){
+    public function __construct($id=0, $id_usuario=0,$email="",$username="",$password="",$dbCnx=""){
 
         $this->id=$id;
         $this->id_usuario=$id_usuario;
@@ -47,7 +47,7 @@ class Registro extends Conexion{
         $this->email=$email;
     }
     public function getEmail(){
-        return $this->usuario;
+        return $this->email;
     }
 
     public function setUsername($username){
@@ -66,10 +66,26 @@ class Registro extends Conexion{
         return $this->password;
     }
 
-    public function inserData(){
+    public function checkUser($email){
+        try {
+            $stm = $this->dbCnx->prepare("SELECT *FROM registro WHERE email = '$email'");
+            $stm-> execute();
+            if ($stm->fetchColumn()){
+                return true;
+            }
+            else{
+                return false;
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+    }
+
+    public function insertData(){
         try {
             $stm = $this->dbCnx->prepare("INSERT INTO registro (id_usuario, email, username, password) values (?,?,?,?)");
-            $stm -> execute([$this->id_usuario,$this->email,$this->username,$this->password]);
+            $stm -> execute([$this->id_usuario,$this->email,$this->username,md5($this->password)]);
         } catch (Exception $e) {
             return $e->getMessage();
         }

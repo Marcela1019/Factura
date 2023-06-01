@@ -9,6 +9,7 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
  
     require_once ("../conexion/conexion.php");
+    require_once ("../conexion/db.php");
 
     class Config extends Conexion {
 

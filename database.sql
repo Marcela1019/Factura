@@ -3,7 +3,7 @@ USE supermarket;
 show databases;
 
 show tables;
-CREATE DATABASE supermarket
+CREATE DATABASE supermarket;
 
 CREATE TABLE categorias(
     id INT primary key AUTO_INCREMENT,
@@ -88,3 +88,5 @@ CREATE TABLE registro(
 DESCRIBE registro;
 
 show empleado;
+
+SELECT * FROM 
