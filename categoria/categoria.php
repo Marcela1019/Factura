@@ -82,6 +82,11 @@ $all = $data->obtainAll();// Invocamos al metodo
           <h3 style="margin: 0px;font-weight: 600;">Productos</h3>
         </a>
 
+        <a href="../Login/loginRegister.php" style="display: flex;gap:2px;color: brown;">
+          <i class="bi bi-x-square"></i>
+          <h3 style="margin: 0px;">salir</h3>
+        </a>
+
       </div>
     </div>
 

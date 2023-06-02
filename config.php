@@ -558,7 +558,7 @@ error_reporting(E_ALL);
             $this->precioUnitario=$precioUnitario;
             $this->unidadesPedidas=$unidadesPedidas;
             $this->stock=$stock;
-            $this->id_categoria=$categoriaNombre;
+            $this->id_categoria=$id_categoria;
             $this->id_proveedor=$id_proveedor;
             $this->descontinuado=$descontinuado;
             parent::__construct($dbCnx);

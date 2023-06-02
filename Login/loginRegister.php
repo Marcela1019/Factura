@@ -35,14 +35,14 @@
                     <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
                         <input 
-                          type="text"
+                          type="password"
                           id="password"
                           name="password"
                           class="form-control"  
                         />
                     </div>
                  
-                    <input type="submit" class="btn btn-primary" value="loguearse" name="loguearse"> 
+                    <input type="submit" class="btn btn-primary" value="Loguearse" name="loguearse"> 
                   </form>
                   
 
@@ -97,7 +97,7 @@
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
-                    <input type="submit" class="btn btn-primary" value="registrarse" name="registrarse">
+                    <input type="submit" class="btn btn-primary" value="Registrarse" name="registrarse">
                   </form>
 
             </div>

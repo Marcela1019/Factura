@@ -14,9 +14,16 @@ error_reporting(E_ALL);
         $registro->setUsername($_POST['username']);
         $registro->setPassword($_POST['password']);
 
-        $registro->insertData();
 
-        echo "<script>alert ('Los datos fueron guardados satisfactoriamente'); document.location='loginRegister.php' </script>";
+        /* echo "<script>alert ('Los datos fueron guardados satisfactoriamente'); document.location='../Home/home.php' </script>"; */
+
+        if($registro->checkUser($_POST['email'])){
+            echo "<script>alert('Usuario ya existe');document.location='loginRegister.php'</script>";
+         }else{
+            $registro->insertData();
+            echo "<script>alert('Los datos fueron guardados satisfactoriamente');document.location='../Home/home.php'</script>";
+        
+         }
 
     }
 

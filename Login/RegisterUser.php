@@ -7,6 +7,8 @@ error_reporting(E_ALL);
 require_once("../conexion/conexion.php");
 require_once("../conexion/db.php");
 
+require_once("LoginUser.php");
+
 
 class RegistroUser extends Conexion{
 
@@ -86,6 +88,12 @@ class RegistroUser extends Conexion{
         try {
             $stm = $this->dbCnx->prepare("INSERT INTO registro (id_usuario, email, username, password) values (?,?,?,?)");
             $stm -> execute([$this->id_usuario,$this->email,$this->username,md5($this->password)]);
+
+            $login = new LoginUser();
+            $login-> setEmail($_POST['email']);
+            $login-> setPassword($_POST['password']);
+
+            $success = $login-> login();
         } catch (Exception $e) {
             return $e->getMessage();
         }

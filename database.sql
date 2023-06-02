@@ -1,6 +1,7 @@
+-- Active: 1685444645314@@127.0.0.1@3306@supermarket
 USE supermarket; 
 
-show databases;
+SHOW databases;
 
 show tables;
 CREATE DATABASE supermarket;
@@ -71,7 +72,7 @@ CREATE TABLE productos(
         descontinuado VARCHAR (10),
 
     FOREIGN KEY (id_categoria) references categorias(id),
-    FOREIGN KEY (id_proveedor) references proveedor(id)
+    FOREIGN KEY (id_proveedor) references proveedor(id),
 );
 
 CREATE TABLE registro(
@@ -88,5 +89,3 @@ CREATE TABLE registro(
 DESCRIBE registro;
 
 show empleado;
-
-SELECT * FROM 

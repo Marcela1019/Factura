@@ -55,8 +55,6 @@ class LoginUser extends Conexion{
             $stm = $this -> dbCnx->prepare("SELECT * FROM registro");
             $stm -> execute();
             return $stm -> fetchAll(); //retorna todos los registros de la tabla
-
-
         } catch (Exception $e) {
             return $e->getMessage();
         }
